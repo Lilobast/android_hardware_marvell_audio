@@ -35,6 +35,7 @@ LOCAL_C_INCLUDES += \
 
 LOCAL_SHARED_LIBRARIES := \
     libcutils \
+    liblog \
     libtinyalsa \
     libhardware \
     libaudioutils \
@@ -47,6 +48,10 @@ LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wall -Werror -Wno-parentheses
 #LOCAL_CFLAGS += -Wno-unused-parameter
+
+# Belt-and-suspenders: guarantees __android_log_print resolves even if
+# LOCAL_SHARED_LIBRARIES liblog isn't picked up by this tree's build.
+LOCAL_LDLIBS += -llog
 
 ifeq ($(TARGET_TINY_ALSA_IGNORE_SILENCE_SIZE),true)
    LOCAL_CFLAGS += -DIGNORE_SILENCE_SIZE

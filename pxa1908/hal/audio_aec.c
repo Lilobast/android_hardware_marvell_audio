@@ -128,8 +128,8 @@ int effect_set_profile()
 struct mrvl_audio_effect* out_get_effect(struct audio_stream *out, effect_uuid_t *effect)
 {
     struct mrvl_stream_out *maout = (struct mrvl_stream_out*)out;
-    struct listnode *node;
-    effect_descriptor_t desc;
+    /* struct listnode *node; effect_descriptor_t desc; -- only used by the
+     * commented-out effect-chain lookup below; re-add if that's restored */
 
     pthread_mutex_lock(&maout->lock);
 
@@ -171,8 +171,8 @@ int in_pre_process()
 int in_add_audio_effect(struct audio_stream *in, effect_entry_t *effect )
 {
     struct mrvl_stream_in *mrvl_in = (struct mrvl_stream_in*)in;
-    struct mrvl_audio_effect *mrvl_effect;
-    struct listnode *node;
+    /* struct mrvl_audio_effect *mrvl_effect; struct listnode *node; -- only
+     * used by the commented-out effect-chain logic below */
 
     ALOGI("%s: add effect %p", __FUNCTION__, effect);
 
@@ -216,8 +216,8 @@ int in_load_effect()
 struct mrvl_audio_effect* in_get_effect(struct audio_stream *in, effect_uuid_t *effect)
 {
     struct mrvl_stream_in *ma_in = (struct mrvl_stream_in*)in;
-    struct listnode *node;
-    effect_descriptor_t desc;
+    /* struct listnode *node; effect_descriptor_t desc; -- only used by the
+     * commented-out effect-chain lookup below */
 
     pthread_mutex_lock(&ma_in->lock);
 
