@@ -45,10 +45,9 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_MODULE:= audio.primary.mrvl
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
-LOCAL_CFLAGS += -Wall -Werror -Wno-parentheses
-# clang: N's system/audio.h uses old GNU designators; audio_config.c has unused code
-LOCAL_CFLAGS += -Wno-gnu-designator -Wno-unused-variable -Wno-unused-function
-#LOCAL_CFLAGS += -Wno-unused-parameter
+# Legacy Marvell HAL written for GCC: under clang it produces many harmless
+# warnings (GNU designators in N headers, unused code), so no -Werror here.
+LOCAL_CFLAGS += -Wall -Wno-parentheses -Wno-gnu-designator -Wno-unused-parameter
 
 ifeq ($(TARGET_TINY_ALSA_IGNORE_SILENCE_SIZE),true)
    LOCAL_CFLAGS += -DIGNORE_SILENCE_SIZE
