@@ -2,7 +2,6 @@ ifneq ($(filter pxa1908,$(TARGET_BOARD_SOC)),)
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_CFLAGS += -Wno-error  # Pie: legacy Marvell code
 
 LOCAL_SHARED_LIBRARIES := liblog
 LOCAL_C_INCLUDES       := hardware/marvell/pxa1908/original-kernel-headers/drivers/marvell/marvell-telephony/include
@@ -11,6 +10,7 @@ LOCAL_MODULE    := libvcm
 LOCAL_MODULE_TAGS := optional
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
+LOCAL_CFLAGS += -Wno-error  # Pie: legacy Marvell code
 include $(BUILD_SHARED_LIBRARY)
 
 endif

@@ -16,7 +16,6 @@ LOCAL_PATH:= $(call my-dir)
 
 # build audio.primary.mrvl.so
 include $(CLEAR_VARS)
-LOCAL_CFLAGS += -Wno-error  # Pie: legacy Marvell code
 
 LOCAL_SRC_FILES:= \
     audio_hw_mrvl.c \
@@ -98,4 +97,5 @@ ifeq ($(strip $(BOARD_AUDIO_COMPONENT_APU)), MAP-LITE)
    LOCAL_CFLAGS += -DWITH_MAP_LITE
 endif
 
+LOCAL_CFLAGS += -Wno-error  # Pie: legacy Marvell code
 include $(BUILD_SHARED_LIBRARY)
